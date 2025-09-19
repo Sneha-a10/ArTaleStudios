@@ -1,0 +1,11 @@
+node_modules/
+uploads/
+.vscode/
+data.sqlite*
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.env

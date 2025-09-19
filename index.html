@@ -1,0 +1,249 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <title>ArTales</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+        --background: #FDFCF9;
+        --foreground: #332E28;
+        --card: #FFFFFF;
+        --card-foreground: #332E28;
+        --popover: #FFFFFF;
+        --popover-foreground: #332E28;
+        --primary: #D97706;--primary-foreground: #FFFFFF;
+        --secondary: #84A98C;--secondary-foreground: #332E28;
+        --muted: #F5F5F4;
+        --muted-foreground: #6B7280;
+        --accent: #F59E0B;--accent-foreground: #332E28;
+        --destructive: #EF4444;
+        --destructive-foreground: #FFFFFF;
+        --border: #E5E7EB;
+        --input: #E5E7EB;
+        --ring: #D97706;
+      }
+      body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: var(--background);
+        color: var(--foreground);
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lora', serif;
+      }
+      .card {
+        background-color: var(--card);
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+      .card-actions {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        display: flex;
+        gap: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      .card:hover .card-actions {
+        opacity: 1;
+      }
+      .card-action-btn {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 9999px;
+        padding: 0.5rem;
+        color: var(--foreground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .artist-info {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .artist-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+        object-fit: cover;
+        border: 2px solid white;
+      }
+      .artist-name {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      }
+      .masonry-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      @media (min-width: 640px) {
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .masonry-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+    </style>
+</head>
+
+<body>
+    <div class="relative flex min-h-screen w-full flex-col bg-[var(--background)] group/design-root">
+        <header
+            class="sticky top-0 z-10 flex items-center justify-between whitespace-nowrap border-b border-[var(--border)] bg-[var(--background)] px-6 md:px-10 py-4">
+            <div class="flex items-center gap-3">
+                <svg class="text-[var(--foreground)]" fill="none" height="24" viewBox="0 0 24 24" width="24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5"></path>
+                    <path d="M2 7L12 12L22 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1.5"></path>
+                    <path d="M12 22V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1.5"></path>
+                </svg>
+                <h1 class="text-[var(--foreground)] text-xl font-bold tracking-tight">ArTales</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <a class="flex items-center justify-center gap-2 rounded-full h-10 px-4 bg-[var(--accent)] text-[var(--accent-foreground)] text-sm font-semibold hover:bg-opacity-90 transition-colors"
+                    href="/create-canvas.html" id="create-link">
+                    <span class="material-symbols-outlined">add</span>
+                    <span class="truncate">Create Post</span>
+                </a>
+                <a class="p-2 rounded-full hover:bg-[var(--muted)]" href="/profile.html" id="profile-link">
+                    <span class="material-symbols-outlined text-[var(--foreground)]">person</span>
+                </a>
+                <a class="p-2 rounded-full hover:bg-[var(--muted)]" href="/login.html" id="login-link">
+                    <span class="material-symbols-outlined text-[var(--foreground)]">login</span>
+                </a>
+                <button class="p-2 rounded-full hover:bg-[var(--muted)] hidden" id="logout-btn" title="Logout">
+                    <span class="material-symbols-outlined text-[var(--foreground)]">logout</span>
+                </button>
+            </div>
+        </header>
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div id="feed" class="masonry-grid"></div>
+        </main>
+    </div>
+
+</body>
+
+<script>
+    (async function () {
+        try {
+            const res = await fetch('/api/me', { credentials: 'include' });
+            const data = await res.json();
+            const loginLink = document.getElementById('login-link');
+            const logoutBtn = document.getElementById('logout-btn');
+            if (data && data.user) {
+                if (loginLink) loginLink.classList.add('hidden');
+                if (logoutBtn) logoutBtn.classList.remove('hidden');
+            }
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async () => {
+                    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+                    window.location.reload();
+                });
+            }
+        } catch (e) { /* ignore */ }
+
+        // Load posts feed
+        try {
+            const res = await fetch('/api/posts');
+            const posts = await res.json();
+            const feed = document.getElementById('feed');
+            if (Array.isArray(posts) && feed) {
+                const columns = 3;
+                const colEls = Array.from({ length: columns }, () => {
+                    const c = document.createElement('div');
+                    c.className = 'flex flex-col gap-6';
+                    return c;
+                });
+                posts.forEach((p, idx) => {
+                    const col = colEls[idx % columns];
+                    const card = document.createElement('div');
+                    card.className = 'card group';
+                    card.innerHTML = `
+                        <a href="/story.html?id=${encodeURIComponent(p.id)}">
+                            <img alt="Post image" class="w-full h-auto object-cover rounded-xl" src="${p.image_path}" />
+                        </a>
+                        <div class="artist-info">
+                            <a href="/profile.html?id=${p.user_id}" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                                <div class="artist-avatar bg-cover bg-center" style="background-image:url('${p.profile_image || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(p.user_name||'User')}`}');"></div>
+                                <span class="artist-name">${p.user_name || 'User'}</span>
+                            </a>
+                        </div>
+                        <div class="absolute bottom-4 right-4 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button class="flex items-center gap-1 bg-white/80 rounded-full px-2 py-1 text-xs" onclick="toggleLike(${p.id}, this, event)">
+                                <span class="material-symbols-outlined text-sm" style="color: ${p.liked ? 'var(--primary)' : '#666'}">favorite</span>
+                                <span>${p.like_count || 0}</span>
+                            </button>
+                            <button class="flex items-center gap-1 bg-white/80 rounded-full px-2 py-1 text-xs" onclick="window.location.href='/story.html?id=${p.id}#comments'">
+                                <span class="material-symbols-outlined text-sm">comment</span>
+                                <span>${p.comment_count || 0}</span>
+                            </button>
+                        </div>`;
+                    col.appendChild(card);
+                });
+                const grid = document.getElementById('feed');
+                colEls.forEach(c => grid.appendChild(c));
+            }
+        } catch (e) { /* ignore */ }
+    })();
+
+    async function toggleLike(postId, button, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        try {
+            const res = await fetch(`/api/posts/${postId}/like`, { 
+                method: 'POST', 
+                credentials: 'include' 
+            });
+            
+            if (res.status === 401) {
+                window.location.href = '/login.html';
+                return;
+            }
+            
+            if (res.ok) {
+                const data = await res.json();
+                const countSpan = button.querySelector('span:last-child');
+                const heartIcon = button.querySelector('.material-symbols-outlined');
+                
+                if (countSpan) countSpan.textContent = data.count;
+                if (heartIcon) {
+                    heartIcon.style.color = data.liked ? 'var(--primary)' : '#666';
+                }
+            }
+        } catch (error) {
+            console.error('Error toggling like:', error);
+        }
+    }
+</script>
+
+</html>
