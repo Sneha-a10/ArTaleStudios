@@ -96,6 +96,11 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+function getPythonCommand() {
+    // Prefer python3; allow override via env; fallback to python
+    return process.env.PYTHON_CMD || 'python3';
+}
+
 // Test story generation endpoint
 app.post('/debug/test-story', upload.single('image'), async (req, res) => {
     try {
@@ -110,7 +115,7 @@ app.post('/debug/test-story', upload.single('image'), async (req, res) => {
         const imageFullPath = path.join(__dirname, imagePath);
         const outputDir = path.join(__dirname, 'uploads');
         
-        const python = spawn('python', [
+        const python = spawn(getPythonCommand(), [
             pythonScript,
             imageFullPath,
             description || 'A crafted piece',
@@ -239,7 +244,7 @@ app.post('/api/posts', upload.single('image'), async (req, res) => {
         
         console.log('Image file path:', imageFullPath);
 
-        const python = spawn('python', [
+        const python = spawn(getPythonCommand(), [
             pythonScript,
             imageFullPath,
             description || 'A crafted piece',
