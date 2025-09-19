@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ArTales - Profile</title>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&amp;family=Montserrat:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --background: #FDFCFB;
+            --text-primary: #3E3832;
+            --text-secondary: #7A7269;
+            --accent-primary: var(--accent-burnt-umber);
+            --accent-burnt-umber: #8A3B00;
+            --accent-sage-green: #8F9D8F;
+            --accent-golden-yellow: #FFC72C;
+            --border-color: #EAE6DF;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .serif {
+            font-family: 'Lora', serif;
+        }
+        .masonry-grid {
+            --grid-gap: 1.5rem;
+            --grid-col-width: 300px;
+        }
+        .grid-item {
+            margin-bottom: var(--grid-gap);
+            width: var(--grid-col-width);
+        }
+        .icon-heart::before {
+            content: '♥';
+            font-family: sans-serif;
+            font-size: 1.2em;
+            display: inline-block;
+            transform: rotate(-5deg);
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+        .icon-heart:hover::before {
+            color: var(--accent-primary);
+        }
+        .icon-comment::before {
+            content: '“';
+            font-family: 'Lora', serif;
+            font-size: 2em;
+            line-height: 0.5;
+            font-weight: bold;
+            display: inline-block;
+            transform: scaleX(-1) translateY(-0.1em) translateX(-0.1em);
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+        .icon-comment:hover::before {
+            color: var(--accent-primary);
+        }
+        .icon-share::before {
+            content: '⤿';
+            font-family: sans-serif;
+            font-size: 1.5em;
+            display: inline-block;
+            transform: rotate(10deg) translateY(-0.1em);
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+        .icon-share:hover::before {
+            color: var(--accent-primary);
+        }
+        .btn-accent {
+            background-color: transparent;
+            color: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-primary);
+            color: var(--background);
+        }
+        .link-accent {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+        .link-accent:hover {
+            text-decoration: underline;
+        }
+        .profile-accent-burnt-umber {
+            --accent-primary: #8A3B00;
+        }
+        .profile-accent-sage-green {
+            --accent-primary: #8F9D8F;
+        }
+        .profile-accent-golden-yellow {
+            --accent-primary: #FFC72C;
+        }
+        .btn-edit-profile {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-edit-profile:hover {
+            color: var(--text-primary);
+            border-color: #DCD7CF;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        .btn-edit-profile:active {
+            background-color: var(--border-color);
+            box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.06);
+            transform: translateY(0);
+        }
+        .btn-new-post {
+            background-color: var(--accent-golden-yellow);
+            color: var(--text-primary);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-new-post:hover {
+            transform: translateY(-1px);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-new-post:active {
+            transform: translateY(0px);
+            box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.15);
+            background-color: #f2bd2a;
+        }
+    </style>
+</head>
+
+<body class="bg-[var(--background)] profile-accent-burnt-umber">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] px-10 py-4 z-10 bg-[var(--background)]/80 backdrop-blur-sm sticky top-0">
+                <div class="flex items-center gap-4 text-[var(--text-primary)]">
+                    <a class="flex items-center gap-3" href="/">
+                        <svg class="h-6 w-6 text-[var(--text-primary)]" fill="none" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="1.5"></path>
+                            <path d="M2 7L12 12L22 7" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="1.5"></path>
+                            <path d="M12 22V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"></path>
+                            <path d="M20.5 7.5L12 12" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="1.5"
+                                style="transform-origin: center center; transform: scale(0.9) rotate(3deg);"></path>
+                            <path d="M3.5 7.5L12 12" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="1.5"
+                                style="transform-origin: center center; transform: scale(0.85) rotate(-2deg);"></path>
+                        </svg>
+                        <h2 class="serif text-[var(--text-primary)] text-xl font-bold leading-tight tracking-tight">ArTales</h2>
+                    </a>
+                </div>
+                <div class="flex flex-1 justify-end gap-6">
+                    <nav class="flex items-center gap-8">
+                        <a class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-sm font-medium leading-normal transition-colors"
+                            href="/">Home</a>
+                    </nav>
+                    <div class="flex items-center gap-4">
+                        <a href="/create-canvas.html"
+                            class="btn-new-post flex items-center gap-2 rounded-md h-10 px-4 text-sm font-bold tracking-wide">
+                            <span class="material-symbols-outlined text-lg">add_circle_outline</span>
+                            Create Post
+                        </a>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1">
+                <div class="relative w-full">
+                    <div class="h-[45vh] max-h-[500px] w-full bg-cover bg-center"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIuu6Wix1NlT0gZw06GBUA--DGUu3UJEI-rxmrnI49xjcu-jnm0g1JJ1uxjQZ6vvuBHLLXXwrlW776nzhuBk_LK4RcfqQ5yqHfdlE4UhOHSHSD2EQWllkl-f9A_DYhiQx12BoN87m-9qADIBWKfTMGJViKQdoBdzvdmBISs3KrHjbzff8FHbCFXBLf_3OPuWT1YscSu-Jg8T7U_5qmTbgvYGxpSQzin7OimJyZpz3PMIxlJFuSiKZLc4iVVL3UBVrf5o_BWD2XF-7b')">
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-end gap-4">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-40 border-4 border-[var(--background)] shadow-lg"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIuu6Wix1NlT0gZw06GBUA--DGUu3UJEI-rxmrnI49xjcu-jnm0g1JJ1uxjQZ6vvuBHLLXXwrlW776nzhuBk_LK4RcfqQ5yqHfdlE4UhOHSHSD2EQWllkl-f9A_DYhiQx12BoN87m-9qADIBWKfTMGJViKQdoBdzvdmBISs3KrHjbzff8FHbCFXBLf_3OPuWT1YscSu-Jg8T7U_5qmTbgvYGxpSQzin7OimJyZpz3PMIxlJFuSiKZLc4iVVL3UBVrf5o_BWD2XF-7b");'>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto relative">
+                        <div class="absolute top-0 -right-4 flex items-center gap-2">
+                            <button id="logout-btn"
+                                class="btn-edit-profile flex items-center gap-2 rounded-md h-9 px-3 text-sm font-medium leading-normal">
+                                <span class="material-symbols-outlined text;base">logout</span>
+                                Logout
+                            </button>
+                            <button id="edit-profile-btn"
+                                class="btn-edit-profile flex items-center gap-2 rounded-md h-9 px-3 text-sm font-medium leading-normal">
+                                <span class="material-symbols-outlined text;base">edit</span>
+                                Edit Profile
+                            </button>
+                        </div>
+                        <h1 id="profile-name" class="serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">Profile</h1>
+                        <p id="profile-bio" class="mt-4 text-lg text-[var(--text-secondary)] leading-relaxed">
+                            I find beauty in the imperfect, the fleeting, the story held within the grain of wood or the
+                            curve of clay. My hands seek to translate the quiet whispers of nature into objects of
+                            simple, everyday use. This is my wabi-sabi journey.
+                        </p>
+                        <div class="mt-6 flex justify-center gap-6 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-[var(--text-primary)]" id="follower-count">0</div>
+                                <div class="text-sm text-[var(--text-secondary)]">Followers</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-[var(--text-primary)]" id="following-count">0</div>
+                                <div class="text-sm text-[var(--text-secondary)]">Following</div>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-center gap-4" id="profile-actions">
+                            <!-- Actions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 sm:px-6 lg:px-8 pb-16">
+                    <div id="my-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                        <!-- Posts will be loaded here dynamically -->
+                    </div>
+                </div>
+            </main>
+            <footer class="w-full border-t border-[var(--border-color)] bg-[var(--background)]">
+                <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+                    <p class="text-[var(--text-secondary)] text-sm">© 2025 ArTales. A celebration of modern
+                        craftsmanship.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="serif text-xl font-bold text-[var(--text-primary)]">Edit Profile</h2>
+                <button id="close-modal" class="text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="edit-profile-form" enctype="multipart/form-data">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-[var(--text-primary)] mb-1">Display Name</label>
+                        <input type="text" id="edit-name" name="name" class="w-full px-3 py-2 border border-[var(--border-color)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-[var(--text-primary)] mb-1">Bio</label>
+                        <textarea id="edit-bio" name="bio" rows="3" class="w-full px-3 py-2 border border-[var(--border-color)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-[var(--text-primary)] mb-1">Profile Picture</label>
+                        <input type="file" id="edit-profile-image" name="profileImage" accept="image/*" class="w-full px-3 py-2 border border-[var(--border-color)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-[var(--text-primary)] mb-1">Banner Image</label>
+                        <input type="file" id="edit-banner-image" name="bannerImage" accept="image/*" class="w-full px-3 py-2 border border-[var(--border-color)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3 mt-6">
+                    <button type="button" id="cancel-edit" class="px-4 py-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-[var(--accent-primary)] text-white rounded-md hover:bg-[var(--accent-primary)]/90">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                // First, get current user for authentication
+                const currentUserRes = await fetch('/api/me', { credentials: 'include' });
+                if (!currentUserRes.ok) {
+                    window.location.href = '/login.html';
+                    return;
+                }
+                const currentUserData = await currentUserRes.json();
+                if (!currentUserData.user) {
+                    window.location.href = '/login.html';
+                    return;
+                }
+                currentUser = currentUserData.user;
+                
+                // Check if we're viewing a specific user's profile
+                const urlParams = new URLSearchParams(window.location.search);
+                const profileUserId = urlParams.get('id');
+                
+                if (profileUserId && profileUserId !== currentUser.id.toString()) {
+                    // Viewing another user's profile
+                    const profileRes = await fetch(`/api/users/${profileUserId}`, { credentials: 'include' });
+                    if (profileRes.ok) {
+                        const profileData = await profileRes.json();
+                        updateProfileDisplay(profileData);
+                        loadFollowStatus(parseInt(profileUserId));
+                        loadUserPosts(parseInt(profileUserId));
+                    } else {
+                        // User not found, redirect to own profile
+                        window.location.href = '/profile.html';
+                        return;
+                    }
+                } else {
+                    // Viewing own profile
+                    updateProfileDisplay(currentUser);
+                    loadMyPosts();
+                }
+            } catch (e) {
+                window.location.href = '/login.html';
+                return;
+            }
+            var elem = document.querySelector('.masonry-grid');
+            if (elem) {
+                var msnry = new Masonry(elem, {
+                    itemSelector: '.grid-item',
+                    columnWidth: '.grid-item',
+                    gutter: 20,
+                    percentPosition: true
+                });
+            }
+
+            // Posts are now loaded by loadMyPosts() or loadUserPosts() functions
+
+            if (closeModal && modal) {
+                closeModal.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                });
+            }
+
+            if (cancelEdit && modal) {
+                cancelEdit.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                });
+            }
+
+            if (editForm) {
+                editForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(editForm);
+                    
+                    try {
+                        const res = await fetch('/api/me', { 
+                            method: 'POST', 
+                            credentials: 'include', 
+                            body: formData 
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            currentUser = data.user;
+                            updateProfileDisplay(data.user);
+                            modal.classList.add('hidden');
+                        } else {
+                            alert('Failed to update profile');
+                        }
+                    } catch (error) {
+                        alert('Error updating profile');
+                    }
+                });
+            }
+
+            // Logout
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async () => {
+                    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+                    window.location.href = '/';
+                });
+            }
+        });
+
+        function updateProfileDisplay(user) {
+            const nameEl = document.getElementById('profile-name');
+            const bioEl = document.getElementById('profile-bio');
+            
+            if (nameEl) nameEl.textContent = user.name || user.email;
+            if (bioEl) bioEl.textContent = user.bio || 'No bio yet.';
+            
+            // Update profile image
+            const profileImages = document.querySelectorAll('[style*="background-image"]');
+            profileImages.forEach(img => {
+                if (user.profile_image) {
+                    img.style.backgroundImage = `url("${user.profile_image}")`;
+                }
+            });
+            
+            // Update banner image
+            const bannerEl = document.querySelector('.h-\\[45vh\\]');
+            if (bannerEl && user.banner_image) {
+                bannerEl.style.backgroundImage = `url("${user.banner_image}")`;
+            }
+            
+            // Load follow status and setup actions
+            loadFollowStatus(user.id);
+        }
+
+        async function loadUserPosts(userId) {
+            try {
+                const res = await fetch(`/api/users/${userId}/posts`, { credentials: 'include' });
+                if (res.ok) {
+                    const posts = await res.json();
+                    displayPosts(posts);
+                }
+            } catch (error) {
+                console.error('Error loading user posts:', error);
+            }
+        }
+
+        async function loadMyPosts() {
+            try {
+                const res = await fetch('/api/my-posts', { credentials: 'include' });
+                if (res.ok) {
+                    const posts = await res.json();
+                    displayPosts(posts);
+                }
+            } catch (error) {
+                console.error('Error loading my posts:', error);
+            }
+        }
+
+        function displayPosts(posts) {
+            const container = document.getElementById('my-posts');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            if (posts.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-[var(--text-secondary)] text-lg">No posts yet</p>
+                    </div>
+                `;
+                return;
+            }
+
+            posts.forEach(p => {
+                const item = document.createElement('div');
+                item.className = 'bg-white/50 border border-[var(--border-color)] rounded-lg overflow-hidden transition-shadow hover:shadow-xl group';
+                item.innerHTML = `
+                    <div class="relative">
+                        <a href="/story.html?id=${encodeURIComponent(p.id)}">
+                            <img alt="Post image" class="w-full h-auto" src="${p.image_path}" />
+                        </a>
+                        ${currentUser && currentUser.id === parseInt(new URLSearchParams(window.location.search).get('id') || currentUser.id) ? `
+                            <button onclick="deletePostFromProfile(${p.id})" class="absolute top-2 right-2 bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700 transition-colors opacity-0 group-hover:opacity-100">
+                                <span class="material-symbols-outlined text-sm">delete</span>
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        async function loadFollowStatus(userId) {
+            try {
+                const res = await fetch(`/api/users/${userId}/follow-status`, { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    // Update counts
+                    document.getElementById('follower-count').textContent = data.followerCount;
+                    document.getElementById('following-count').textContent = data.followingCount;
+                    
+                    // Setup profile actions
+                    const actionsContainer = document.getElementById('profile-actions');
+                    if (currentUser && currentUser.id === userId) {
+                        // Own profile - show edit button
+                        actionsContainer.innerHTML = `
+                            <button id="edit-profile-btn-main" class="btn-accent flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-11 px-6 text-base font-medium leading-normal shadow-sm transition-all">
+                                <span class="truncate">Edit Profile</span>
+                            </button>
+                        `;
+                        // Setup the main edit button
+                        if (window.setupMainEditButton) {
+                            window.setupMainEditButton();
+                        }
+                    } else if (currentUser) {
+                        // Other user's profile - show follow button
+                        actionsContainer.innerHTML = `
+                            <button id="follow-btn" class="btn-accent flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-11 px-6 text-base font-medium leading-normal shadow-sm transition-all">
+                                <span class="truncate">${data.isFollowing ? 'Unfollow' : 'Follow'}</span>
+                            </button>
+                        `;
+                        document.getElementById('follow-btn').addEventListener('click', () => toggleFollow(userId));
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading follow status:', error);
+            }
+        }
+
+        async function toggleFollow(userId) {
+            try {
+                const res = await fetch(`/api/users/${userId}/follow`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('follower-count').textContent = data.followerCount;
+                    
+                    const followBtn = document.getElementById('follow-btn');
+                    if (followBtn) {
+                        followBtn.querySelector('span').textContent = data.following ? 'Unfollow' : 'Follow';
+                    }
+                }
+            } catch (error) {
+                console.error('Error toggling follow:', error);
+            }
+        }
+
+        async function toggleLike(postId, button) {
+            try {
+                const res = await fetch(`/api/posts/${postId}/like`, { 
+                    method: 'POST', 
+                    credentials: 'include' 
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    const countSpan = button.querySelector('span:last-child');
+                    if (countSpan) countSpan.textContent = data.count;
+                    
+                    const heart = button.querySelector('.icon-heart');
+                    if (heart) {
+                        heart.style.color = data.liked ? 'var(--accent-primary)' : 'var(--text-secondary)';
+                    }
+                }
+            } catch (error) {
+                console.error('Error toggling like:', error);
+            }
+        }
+
+        async function deletePostFromProfile(postId) {
+            if (!confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+                return;
+            }
+            
+            try {
+                const res = await fetch(`/api/posts/${postId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+                
+                if (res.ok) {
+                    // Remove the post from the UI
+                    const postElement = document.querySelector(`[onclick*="${postId}"]`).closest('.grid-item');
+                    if (postElement) {
+                        postElement.remove();
+                    }
+                    
+                    // Check if no posts left
+                    const container = document.getElementById('my-posts');
+                    if (container.children.length === 0) {
+                        container.innerHTML = `
+                            <div class="col-span-full text-center py-12">
+                                <p class="text-[var(--text-secondary)] text-lg">No posts yet</p>
+                                <a href="/create-canvas.html" class="inline-block mt-4 px-6 py-2 bg-[var(--accent-golden-yellow)] text-[var(--text-primary)] rounded-lg hover:bg-[var(--accent-golden-yellow)]/90">Create your first post</a>
+                            </div>`;
+                    }
+                } else {
+                    alert('Failed to delete post');
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                alert('Error deleting post');
+            }
+        }
+
+        // Make functions available globally
+        window.toggleLike = toggleLike;
+        window.deletePostFromProfile = deletePostFromProfile;
+
+        // Edit profile modal setup
+        function setupEditModal() {
+            const editBtn = document.getElementById('edit-profile-btn');
+            const modal = document.getElementById('edit-profile-modal');
+            const closeModal = document.getElementById('close-modal');
+            const cancelEdit = document.getElementById('cancel-edit');
+            const editForm = document.getElementById('edit-profile-form');
+
+            function openModal() {
+                if (currentUser && modal) {
+                    // Populate form with current data
+                    document.getElementById('edit-name').value = currentUser.name || '';
+                    document.getElementById('edit-bio').value = currentUser.bio || '';
+                    modal.classList.remove('hidden');
+                }
+            }
+
+            // Setup header edit button
+            if (editBtn) {
+                editBtn.addEventListener('click', openModal);
+            }
+            
+            // Setup main edit button (will be created dynamically)
+            window.setupMainEditButton = function() {
+                const editBtnMain = document.getElementById('edit-profile-btn-main');
+                if (editBtnMain) {
+                    editBtnMain.addEventListener('click', openModal);
+                }
+            };
+
+            // Setup modal close buttons
+            if (closeModal && modal) {
+                closeModal.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                });
+            }
+
+            if (cancelEdit && modal) {
+                cancelEdit.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                });
+            }
+
+            // Setup form submission
+            if (editForm) {
+                editForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(editForm);
+                    
+                    try {
+                        const res = await fetch('/api/me', { 
+                            method: 'POST', 
+                            credentials: 'include', 
+                            body: formData 
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            currentUser = data.user;
+                            updateProfileDisplay(data.user);
+                            modal.classList.add('hidden');
+                        } else {
+                            alert('Failed to update profile');
+                        }
+                    } catch (error) {
+                        alert('Error updating profile');
+                    }
+                });
+            }
+        }
+
+        // Initialize edit modal
+        setupEditModal();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Ensure consistent line endings in scripts
+*.js text eol=lf
+*.py text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+
+# Binary files (don't diff)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.sqlite binary
+*.sqlite-shm binary
+*.sqlite-wal binary
