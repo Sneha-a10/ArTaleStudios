@@ -1,11 +1,33 @@
+# Node.js dependencies
 node_modules/
-uploads/
-.vscode/
-data.sqlite*
-*.sqlite
-*.sqlite-wal
-*.sqlite-shm
-*.ipynb_checkpoints/
+package-lock.json
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
 .env
+venv/
+ENV/
+*.ipynb_checkpoints
+
+# SQLite database files
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Uploads (if they are user-generated and shouldn't be tracked)
+uploads/
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
