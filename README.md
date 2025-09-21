@@ -125,7 +125,7 @@ The Express.js server exposes the following REST API endpoints:
 1.  **Clone the repository:**
     ```bash
     git clone "https://github.com/Sneha-a10/ArTaleStudios.git"
-    cd ArTaleStudios/model1
+    cd ArTaleStudios
     ```
 
 2.  **Install Node.js dependencies:**
@@ -138,7 +138,7 @@ The Express.js server exposes the following REST API endpoints:
     pip install -r requirements.txt
     ```
 
-4.  **Create a `.env` file** in the `ArTaleStudios1/model1` directory and add the following environment variables with your API keys and secrets:
+4.  **Create a `.env` file** in the `ArTaleStudios` directory and add the following environment variables with your API keys and secrets:
     ```
     GEMINI_API_KEY=your_gemini_api_key
     ELEVENLABS_API_KEY=your_elevenlabs_api_key
