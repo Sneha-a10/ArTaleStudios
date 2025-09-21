@@ -124,8 +124,8 @@ The Express.js server exposes the following REST API endpoints:
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd ArTaleStudios1/model1
+    git clone "https://github.com/Sneha-a10/ArTaleStudios.git"
+    cd ArTaleStudios/model1
     ```
 
 2.  **Install Node.js dependencies:**
