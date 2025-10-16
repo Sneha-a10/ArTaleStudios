@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <title>ArTales</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+        --background: #fdfcf7;
+        --foreground: #3a3834;
+        --accent-burnt-umber: #8a3b1a;
+        --accent-dusty-sage: #a3b8a1;
+        --accent-golden-hour: #f9ad1f;
+      }
+      body {
+        font-family: "Lora", serif;
+        background-color: var(--background);
+        color: var(--foreground);
+      }
+      .font-sans {
+        font-family: "Montserrat", sans-serif;
+      }
+      .signature-link {
+        font-family: 'Lora', serif;
+        font-style: italic;
+        font-weight: 500;
+        position: relative;
+        display: inline-block;
+        color: var(--accent-burnt-umber);
+        text-decoration: none;
+      }
+      .signature-link::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent-burnt-umber);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+      }
+      .signature-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+      .audio-waveform {
+        --wave-color: #d1c7b8;
+        --progress-color: var(--accent-golden-hour);
+        width: 100%;
+        height: 50px;
+        background-image: linear-gradient( to right, var(--progress-color) 0%, var(--progress-color) 30%, var(--wave-color) 30%, var(--wave-color) 100% ), url("data:image/svg+xml,%3Csvg width='200' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d1c7b8'%3E%3Crect x='0' y='22.5' width='2' height='5'/%3E%3Crect x='4' y='17.5' width='2' height='15'/%3E%3Crect x='8' y='20' width='2' height='10'/%3E%3Crect x='12' y='15' width='2' height='20'/%3E%3Crect x='16' y='10' width='2' height='30'/%3E%3Crect x='20' y='17.5' width='2' height='15'/%3E%3Crect x='24' y='22.5' width='2' height='5'/%3E%3Crect x='28' y='20' width='2' height='10'/%3E%3Crect x='32' y='5' width='2' height='40'/%3E%3Crect x='36' y='15' width='2' height='20'/%3E%3Crect x='40' y='22.5' width='2' height='5'/%3E%3Crect x='44' y='10' width='2' height='30'/%3E%3Crect x='48' y='17.5' width='2' height='15'/%3E%3Crect x='52' y='22.5' width='2' height='5'/%3E%3Crect x='56' y='20' width='2' height='10'/%3E%3Crect x='60' y='12.5' width='2' height='25'/%3E%3Crect x='64' y='17.5' width='2' height='15'/%3E%3Crect x='68' y='22.5' width='2' height='5'/%3E%3Crect x='72' y='15' width='2' height='20'/%3E%3Crect x='76' y='10' width='2' height='30'/%3E%3Crect x='80' y='17.5' width='2' height='15'/%3E%3Crect x='84' y='22.5' width='2' height='5'/%3E%3Crect x='88' y='20' width='2' height='10'/%3E%3Crect x='92' y='2.5' width='2' height='45'/%3E%3Crect x='96' y='15' width='2' height='20'/%3E%3Crect x='100' y='22.5' width='2' height='5'/%3E%3Crect x='104' y='10' width='2' height='30'/%3E%3Crect x='108' y='17.5' width='2' height='15'/%3E%3Crect x='112' y='22.5' width='2' height='5'/%3E%3Crect x='116' y='20' width='2' height='10'/%3E%3Crect x='120' y='12.5' width='2' height='25'/%3E%3Crect x='124' y='17.5' width='2' height='15'/%3E%3Crect x='128' y='22.5' width='2' height='5'/%3E%3Crect x='132' y='15' width='2' height='20'/%3E%3Crect x='136' y='10' width='2' height='30'/%3E%3Crect x='140' y='17.5' width='2' height='15'/%3E%3Crect x='144' y='22.5' width='2' height='5'/%3E%3Crect x='148' y='20' width='2' height='10'/%3E%3Crect x='152' y='5' width='2' height='40'/%3E%3Crect x='156' y='15' width='2' height='20'/%3E%3Crect x='160' y='22.5' width='2' height='5'/%3E%3Crect x='164' y='10' width='2' height='30'/%3E%3Crect x='168' y='17.5' width='2' height='15'/%3E%3Crect x='172' y='22.5' width='2' height='5'/%3E%3Crect x='176' y='20' width='2' height='10'/%3E%3Crect x='180' y='12.5' width='2' height='25'/%3E%3Crect x='184' y='17.5' width='2' height='15'/%3E%3Crect x='188' y='22.5' width='2' height='5'/%3E%3Crect x='192' y='15' width='2' height='20'/%3E%3Crect x='196' y='10' width='2' height='30'/%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: repeat-x;
+        background-size: auto 100%, auto;
+        background-position: 0 0;
+        animation: pulse 1.5s infinite alternate;
+        animation-play-state: paused;
+      }
+      .audio-waveform.playing {
+        animation-play-state: running;
+      }
+      @keyframes pulse {
+        0% { transform: scaleY(1); }
+        50% { transform: scaleY(1.05); }
+        100% { transform: scaleY(1); }
+      }
+    </style>
+</head>
+
+<body class="bg-[var(--background)] text-[var(--foreground)]">
+    <div class="flex flex-col min-h-screen">
+        <header class="sticky top-0 z-10 w-full bg-[var(--background)]/80 backdrop-blur-sm">
+            <div class="container mx-auto px-6 lg:px-10">
+                <div class="flex items-center justify-between border-b border-[#EAE8E2] py-4">
+                    <a class="flex items-center gap-3 text-xl font-medium tracking-tight" href="/">
+                        ArTales
+                    </a>
+                    <nav
+                        class="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-[var(--foreground)]/80">
+                        <a class="hover:text-[var(--foreground)] transition-colors" href="/">Home</a>
+                        <a class="hover:text-[var(--foreground)] transition-colors" href="/profile.html">Profile</a>
+                        <a class="hover:text-[var(--foreground)] transition-colors" href="/create-canvas.html">Create
+                            Post</a>
+                    </nav>
+                    <div class="flex items-center gap-4">
+                        <button id="logout-btn"
+                            class="text-[var(--foreground)]/80 hover:text-[var(--foreground)] transition-colors hidden">
+                            <span class="material-symbols-outlined">logout</span>
+                        </button>
+                        <a class="text-[var(--foreground)]/80 hover:text-[var(--foreground)] transition-colors"
+                            href="/login.html" id="login-link">
+                            <span class="material-symbols-outlined">login</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-grow">
+            <div id="hero" class="h-[50vh] md:h-[60vh] w-full"></div>
+            <div class="max-w-3xl mx-auto px-6 sm:px-8 lg:px-0 py-12 md:py-16">
+                <!-- Post Title -->
+                <!-- Title and description removed - showing only generated story -->
+
+                <!-- Author Info -->
+                <div id="author-info" class="mb-6 pb-4 border-b border-[var(--border-color)]">
+                    <!-- Author info will be populated by JavaScript -->
+                </div>
+
+                <!-- Story Content -->
+                <div id="story-text"
+                    class="prose prose-lg prose-p:text-[var(--foreground)] prose-headings:text-[var(--foreground)] max-w-none text-lg leading-relaxed mb-8">
+                </div>
+                <div class="my-10">
+                    <div class="flex items-center gap-4 bg-[#F8F6F2] p-4 rounded-lg">
+                        <button
+                            class="flex shrink-0 items-center justify-center rounded-full size-12 bg-[var(--accent-golden-hour)] text-white"
+                            id="play-pause-btn">
+                            <svg fill="currentColor" height="24px" id="play-icon" viewBox="0 0 256 256" width="24px"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z">
+                                </path>
+                            </svg>
+                            <svg class="hidden" fill="currentColor" height="24px" id="pause-icon" viewBox="0 0 256 256"
+                                width="24px" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <div class="flex-grow">
+                            <div class="audio-waveform playing"></div>
+                        </div>
+                    </div>
+                    <script>
+                        const playPauseBtn = document.getElementById('play-pause-btn');
+                        const playIcon = document.getElementById('play-icon');
+                        const pauseIcon = document.getElementById('pause-icon');
+                        const waveform = document.querySelector('.audio-waveform');
+                        let isPlaying = false;
+                        let audioEl = null;
+
+                        if (playPauseBtn) {
+                            playPauseBtn.addEventListener('click', () => {
+                                if (!audioEl) return;
+                                isPlaying = !isPlaying;
+                                if (isPlaying) {
+                                    audioEl.play().catch(e => console.error('Audio play failed:', e));
+                                } else {
+                                    audioEl.pause();
+                                }
+                                playIcon.classList.toggle('hidden', isPlaying);
+                                pauseIcon.classList.toggle('hidden', !isPlaying);
+                                waveform.classList.toggle('playing', isPlaying);
+                            });
+                        }
+                    </script>
+                </div>
+                <div id="buy-now-section" class="text-right mt-8 mb-12" style="display: block;">
+                    <a id="buy-now-link" class="signature-link text-xl underline-offset-8" href="#" target="_blank"
+                        rel="noopener noreferrer">
+                        Buy Now
+                    </a>
+                </div>
+                <div class="border-t border-[#EAE8E2] pt-6 flex justify-end items-center gap-6 font-sans">
+                    <div class="flex items-center gap-2 text-[var(--foreground)]/60">
+                        <button id="like-btn"
+                            class="text-inherit hover:text-[var(--accent-burnt-umber)] transition-colors">
+                            <svg fill="currentColor" height="22" viewBox="0 0 256 256" width="22"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <span id="like-count" class="text-sm font-medium">0</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-[var(--foreground)]/60">
+                        <button id="comment-btn" class="text-inherit hover:text-[var(--foreground)] transition-colors">
+                            <svg fill="currentColor" height="22" viewBox="0 0 256 256" width="22"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM84,116a12,12,0,1,0,12,12A12,12,0,0,0,84,116Zm88,0a12,12,0,1,0,12,12A12,12,0,0,0,172,116Zm60,12A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <span id="comment-count" class="text-sm font-medium">0</span>
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div id="comments" class="mt-12 border-t border-[#EAE8E2] pt-8">
+                    <h3 class="text-xl font-medium mb-6">Comments</h3>
+
+                    <!-- Add Comment Form -->
+                    <div id="add-comment-form" class="mb-8 hidden">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"></div>
+                            <div class="flex-1">
+                                <textarea id="comment-input" placeholder="Add a comment..."
+                                    class="w-full p-3 border border-[#EAE8E2] rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[var(--accent-burnt-umber)] focus:border-transparent"
+                                    rows="3"></textarea>
+                                <div class="flex justify-end gap-2 mt-2">
+                                    <button id="cancel-comment"
+                                        class="px-4 py-2 text-[var(--foreground)]/60 hover:text-[var(--foreground)]">Cancel</button>
+                                    <button id="submit-comment"
+                                        class="px-4 py-2 bg-[var(--accent-burnt-umber)] text-white rounded-lg hover:bg-[var(--accent-burnt-umber)]/90">Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comments List -->
+                    <div id="comments-list" class="space-y-6">
+                        <!-- Comments will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            let currentPostId = null;
+            let currentUser = null;
+
+            async function checkAuth() {
+                try {
+                    const res = await fetch('/api/me', { credentials: 'include' });
+                    if (res.ok) {
+                        const data = await res.json();
+                        currentUser = data.user;
+                        document.getElementById('add-comment-form').classList.remove('hidden');
+                        const logoutBtn = document.getElementById('logout-btn');
+                        const loginLink = document.getElementById('login-link');
+                        if (logoutBtn) {
+                            logoutBtn.classList.remove('hidden');
+                            logoutBtn.addEventListener('click', async () => {
+                                await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+                                window.location.href = '/login.html';
+                            });
+                        }
+                        if (loginLink) {
+                            loginLink.classList.add('hidden');
+                        }
+                    }
+                } catch (e) { /* ignore */ }
+            }
+
+            (async function () {
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id');
+                if (!id) return;
+
+                currentPostId = id;
+                await checkAuth();
+
+                try {
+                    const res = await fetch('/api/posts/' + encodeURIComponent(id), { credentials: 'include' });
+                    if (!res.ok) return;
+                    const p = await res.json();
+
+                    // Set hero image
+                    const hero = document.getElementById('hero');
+                    if (hero && p.image_path) {
+                        hero.style.backgroundImage = `url('${p.image_path}')`;
+                        hero.style.backgroundSize = 'cover';
+                        hero.style.backgroundPosition = 'center';
+                    }
+
+                    // Set author info
+                    const authorInfo = document.getElementById('author-info');
+                    if (authorInfo) {
+                        authorInfo.innerHTML = `
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-gray-300" style="background-image: url('${p.profile_image || ''}'); background-size: cover; background-position: center;"></div>
+                                <div>
+                                    <div class="font-semibold">${p.user_name || 'Unknown Author'}</div>
+                                    <div class="text-xs text-gray-500">${new Date(p.created_at).toLocaleString()}</div>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    // Set story text
+                    const storyText = document.getElementById('story-text');
+                    if (storyText) {
+                        storyText.textContent = p.story || '';
+                    }
+
+                    // Handle Buy Now link
+                    const buyNowSection = document.getElementById('buy-now-section');
+                    const buyNowLink = document.getElementById('buy-now-link');
+                    console.log('=== POST DATA DEBUG ===');
+                    console.log('Full post object:', p);
+                    console.log('All available fields:', Object.keys(p));
+                    console.log('Post ID:', p.id);
+                    console.log('Post created at:', p.created_at);
+                    console.log('Checking for product link fields:');
+                    console.log('- p.product_link:', p.product_link);
+                    console.log('- p.productLink:', p.productLink);
+                    console.log('- p.product_url:', p.product_url);
+                    console.log('- p.productUrl:', p.productUrl);
+                    console.log('========================');
+
+                    // Check for different possible field names that the backend might use
+                    const productLink = p.product_link || p.productLink || p.product_url || p.productUrl;
+                    console.log('Final product link found:', productLink);
+
+                    if (productLink && buyNowSection && buyNowLink) {
+                        buyNowLink.href = productLink;
+                        buyNowSection.style.display = 'block';
+                        console.log('✅ Buy Now button shown with user link:', productLink);
+                    } else {
+                        console.log('❌ No product link found in backend data');
+                        console.log('Available fields:', Object.keys(p));
+                        console.log('💡 Backend needs to save and return the productLink field');
+                        
+                        // For testing: show button with test link
+                        if (buyNowSection && buyNowLink) {
+                            buyNowLink.href = 'https://www.amazon.in/test-product';
+                            buyNowSection.style.display = 'block';
+                            console.log('🔧 Buy Now button shown with test link for debugging');
+                        }
+                    }
+
+                    // Handle audio player
+                    const audioSection = document.querySelector('.my-10');
+                    if (p.has_audio) {
+                        if (audioSection) {
+                            audioSection.style.display = 'block';
+                            audioSection.innerHTML = `
+                                <div class="flex items-center gap-4 bg-[#F8F6F2] p-4 rounded-lg">
+                                    <button class="flex shrink-0 items-center justify-center rounded-full size-12 bg-[var(--accent-golden-hour)] text-white hover:bg-[var(--accent-golden-hour)]/90 transition-colors" id="play-pause-btn">
+                                        <svg fill="currentColor" height="24px" id="play-icon" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
+                                        </svg>
+                                        <svg class="hidden" fill="currentColor" height="24px" id="pause-icon" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"></path>
+                                        </svg>
+                                    </button>
+                                    <div class="flex-grow">
+                                        <div class="audio-waveform bg-gradient-to-r from-[var(--accent-golden-hour)] to-[var(--accent-golden-hour)]/30 h-2 rounded-full"></div>
+                                        <p class="text-sm text-[var(--foreground)]/60 mt-2">🎧 Click to listen to the AI-generated story narration</p>
+                                    </div>
+                                </div>
+                            `;
+                            const audio = new Audio(`/api/posts/${p.id}/audio`);
+                            const playBtn = document.getElementById('play-pause-btn');
+                            const playIcon = document.getElementById('play-icon');
+                            const pauseIcon = document.getElementById('pause-icon');
+                            const waveform = document.querySelector('.audio-waveform');
+
+                            audio.addEventListener('play', () => {
+                                if (playIcon) playIcon.classList.add('hidden');
+                                if (pauseIcon) pauseIcon.classList.remove('hidden');
+                                if (waveform) waveform.classList.add('animate-pulse');
+                            });
+                            audio.addEventListener('pause', () => {
+                                if (playIcon) playIcon.classList.remove('hidden');
+                                if (pauseIcon) pauseIcon.classList.add('hidden');
+                                if (waveform) waveform.classList.remove('animate-pulse');
+                            });
+                            audio.addEventListener('ended', () => {
+                                if (playIcon) playIcon.classList.remove('hidden');
+                                if (pauseIcon) pauseIcon.classList.add('hidden');
+                                if (waveform) waveform.classList.remove('animate-pulse');
+                            });
+
+                            if (playBtn) {
+                                playBtn.addEventListener('click', () => {
+                                    if (audio.paused) {
+                                        audio.play().catch(e => {
+                                            console.error('Audio play failed:', e);
+                                            alert('Unable to play audio. Please check if the audio file exists.');
+                                        });
+                                    } else {
+                                        audio.pause();
+                                    }
+                                });
+                            }
+                            window.currentAudio = audio;
+                        }
+                    } else {
+                        if (audioSection) {
+                            audioSection.innerHTML = `
+                                <div class="flex items-center justify-center gap-4 bg-[#F8F6F2] p-4 rounded-lg">
+                                    <div class="flex items-center gap-2 text-[var(--foreground)]/60">
+                                        <span class="material-symbols-outlined">volume_off</span>
+                                        <span>Audio narration not available for this story</span>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    }
+
+                    // Load likes and comments
+                    await loadLikesAndComments(p.id);
+
+                } catch (e) { /* ignore */ }
+            })();
+
+            // Comment functionality
+            async function loadLikesAndComments(postId) {
+                try {
+                    // Load likes
+                    const likesRes = await fetch(`/api/posts/${postId}/likes`, { credentials: 'include' });
+                    if (likesRes.ok) {
+                        const likesData = await likesRes.json();
+                        document.getElementById('like-count').textContent = likesData.count || 0;
+                    }
+
+                    // Load comments
+                    const commentsRes = await fetch(`/api/posts/${postId}/comments`, { credentials: 'include' });
+                    if (commentsRes.ok) {
+                        const commentsData = await commentsRes.json();
+                        document.getElementById('comment-count').textContent = commentsData.length || 0;
+                        displayComments(commentsData);
+                    }
+                } catch (e) {
+                    console.error('Error loading likes/comments:', e);
+                }
+            }
+
+            function displayComments(comments) {
+                const commentsList = document.getElementById('comments-list');
+                if (!commentsList) return;
+
+                if (comments.length === 0) {
+                    commentsList.innerHTML = '<p class="text-[var(--foreground)]/60 text-center py-8">No comments yet. Be the first to comment!</p>';
+                    return;
+                }
+
+                commentsList.innerHTML = comments.map(comment => `
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" style="background-image: url('${comment.profile_image || ''}'); background-size: cover; background-position: center;"></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-medium text-sm">${comment.user_name || 'Anonymous'}</span>
+                                <span class="text-xs text-[var(--foreground)]/60">${new Date(comment.created_at).toLocaleString()}</span>
+                            </div>
+                            <p class="text-[var(--foreground)]/80">${comment.content}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Event listeners for comments
+            document.getElementById('comment-btn')?.addEventListener('click', () => {
+                const form = document.getElementById('add-comment-form');
+                if (currentUser) {
+                    form.classList.toggle('hidden');
+                    if (!form.classList.contains('hidden')) {
+                        document.getElementById('comment-input').focus();
+                    }
+                } else {
+                    window.location.href = '/login.html';
+                }
+            });
+
+            document.getElementById('cancel-comment')?.addEventListener('click', () => {
+                document.getElementById('add-comment-form').classList.add('hidden');
+                document.getElementById('comment-input').value = '';
+            });
+
+            document.getElementById('submit-comment')?.addEventListener('click', async () => {
+                const input = document.getElementById('comment-input');
+                const content = input.value.trim();
+
+                if (!content || !currentPostId) return;
+
+                try {
+                    const res = await fetch(`/api/posts/${currentPostId}/comments`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ content })
+                    });
+
+                    if (res.ok) {
+                        input.value = '';
+                        document.getElementById('add-comment-form').classList.add('hidden');
+                        await loadLikesAndComments(currentPostId);
+                    } else {
+                        alert('Failed to post comment. Please try again.');
+                    }
+                } catch (e) {
+                    console.error('Error posting comment:', e);
+                    alert('Failed to post comment. Please try again.');
+                }
+            });
+
+            // Like functionality
+            document.getElementById('like-btn')?.addEventListener('click', async () => {
+                if (!currentUser) {
+                    window.location.href = '/login.html';
+                    return;
+                }
+
+                if (!currentPostId) return;
+
+                try {
+                    const res = await fetch(`/api/posts/${currentPostId}/like`, {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
+
+                    if (res.ok) {
+                        await loadLikesAndComments(currentPostId);
+                    }
+                } catch (e) {
+                    console.error('Error toggling like:', e);
+                }
+            });
+        </script>
+    </div>
+</body>
+
+</html>

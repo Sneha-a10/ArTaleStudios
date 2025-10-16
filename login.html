@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link as="style"
+        href="https://fonts.googleapis.com/css2?display=swap&amp;family=Newsreader%3Awght%4040 0%3B500%3B700%3B800&amp;family=Inter%3Awght%40400%3B500%3B700"
+        onload="this.rel='stylesheet'" rel="stylesheet" />
+    <title>ArTales - Login</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+      :root { --background-color: #f9f6f1; --text-color: #433d31; --primary-color: #e59549; --secondary-color: #d1c8ba; --accent-color: #8c7c5f; }
+      body { font-family: 'Inter', sans-serif; }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Newsreader', serif; }
+      .wabi-sabi-bg { background-color: var(--background-color); }
+      .btn { @apply transition-all duration-300 ease-in-out; }
+      .btn:active { @apply transform -translate-y-px shadow-inner; }
+      .form-input { @apply bg-transparent border-2 border-[var(--secondary-color)] rounded-md px-4 py-3 w-full text-[var(--text-color)] placeholder:text-[var(--accent-color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all duration-300; }
+    </style>
+</head>
+
+<body class="wabi-sabi-bg text-[var(--text-color)]">
+  <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="flex h-full grow flex-col items-center justify-center p-6 lg:p-12">
+      <div class="w-full max-w-md space-y-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold tracking-tight text-[var(--text-color)]"><a href="/">ArTales</a></h1>
+          <p class="mt-4 text-lg text-[var(--accent-color)]">Welcome back</p>
+        </div>
+        <div class="rounded-lg bg-white/30 p-8 shadow-sm backdrop-blur-sm border border-white/20 space-y-6">
+          <div class="space-y-4">
+            <div>
+              <label class="sr-only" for="email">Email</label>
+              <input autocomplete="email" class="form-input" id="email" name="email" placeholder="Enter your email" required type="email" />
+            </div>
+            <div>
+              <label class="sr-only" for="password">Password</label>
+              <input autocomplete="current-password" class="form-input" id="password" name="password" placeholder="Enter your password" required type="password" />
+            </div>
+          </div>
+          <div class="space-y-4">
+            <button id="login-submit" class="btn w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-[var(--primary-color)] hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]" type="button">Login</button>
+          </div>
+        </div>
+        <p class="text-center text-sm text-[var(--accent-color)]">
+          Don't have an account?
+          <a class="font-medium text-[var(--text-color)] hover:text-[var(--primary-color)] hover:underline" href="/signup.html">Sign up</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('login-submit');
+      if (!btn) return;
+      btn.addEventListener('click', async () => {
+        const email = document.getElementById('email')?.value?.trim();
+        const password = document.getElementById('password')?.value;
+        if (!email || !password) { alert('Please enter email and password'); return; }
+        try {
+          const res = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify({ email, password }) });
+          if (!res.ok) { 
+            const data = await res.json().catch(() => ({})); 
+            throw new Error(data.error || 'Login failed'); 
+          }
+          
+          // Wait a moment for cookie to be set, then redirect
+          setTimeout(() => {
+            window.location.href = '/profile.html';
+          }, 200);
+        } catch (err) { 
+          alert(err.message || 'Something went wrong'); 
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>
+
